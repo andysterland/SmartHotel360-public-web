@@ -1,6 +1,4 @@
-using Microsoft.ApplicationInsights.AspNetCore;
 using Microsoft.ApplicationInsights.Extensibility;
-using Microsoft.ApplicationInsights.SnapshotCollector;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
@@ -28,7 +26,6 @@ namespace SmartHotel360.PublicWeb
 
             services.Configure<LocalSettings>(Configuration);
             services.AddSingleton<SettingsService>( (sp) => SettingsService.Load(sp.GetService<IOptions<LocalSettings>>().Value));
-            services.AddSingleton<ITelemetryProcessorFactory>(new SnapshotCollectorTelemetryProcessorFactory());
 
             // Our custom services
             if (!string.IsNullOrEmpty(Configuration["USE_NULL_TESTIMONIALS_SERVICE"]))
@@ -70,12 +67,5 @@ namespace SmartHotel360.PublicWeb
                     defaults: new { controller = "Home", action = "Index" });
             });
         }
-
-        private class SnapshotCollectorTelemetryProcessorFactory : ITelemetryProcessorFactory
-        {
-            public ITelemetryProcessor Create(ITelemetryProcessor next) =>
-                new SnapshotCollectorTelemetryProcessor(next);
-        }
-
     }
 }
