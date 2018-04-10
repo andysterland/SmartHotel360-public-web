@@ -36,33 +36,43 @@ namespace SmartHotel360.PublicWeb.Controllers
                 return BadRequest();
             }
 
+            DocumentClient client = await InitializeClient();
+
+            return PerformUploadPetImage(petRequest, client);
+        }
+
+        private IActionResult PerformUploadPetImage(PetUploadRequest petRequest, DocumentClient client)
+        {
             var tokens = petRequest.Base64.Split(',');
             var ctype = tokens[0].Replace("data:", "");
             var base64 = tokens[1];
             var content = Convert.FromBase64String(base64);
 
             // Upload photo to storage...
-            var blobUri = await UploadPetToStorage(content);
+            var blobUri = UploadPetToStorage(content);
 
             // Then create a Document in CosmosDb to notify our Function
-            var identifier = await UploadDocument(blobUri, petRequest.Name ?? "Bob");
+            var identifier = UploadDocument(blobUri, petRequest.Name ?? "Bob", client);
 
             return Ok(identifier);
         }
 
-        private async Task<Guid> UploadDocument(Uri uri, string petName)
+        private async Task<DocumentClient> InitializeClient()
         {
-
             var endpoint = new Uri(_settingsSvc.GlobalSettings.Pets_Config.CosmosUri);
             var auth = _settingsSvc.GlobalSettings.Pets_Config.CosmosKey;
             var client = new DocumentClient(endpoint, auth);
-            var identifier = Guid.NewGuid();
-
             await client.CreateDatabaseIfNotExistsAsync(new Database() { Id = dbName });
             await client.CreateDocumentCollectionIfNotExistsAsync(UriFactory.CreateDatabaseUri(dbName),
                 new DocumentCollection { Id = colName });
+            return client;
+        }
 
-            await client.CreateDocumentAsync(
+        private Guid UploadDocument(Uri uri, string petName, DocumentClient client)
+        {
+            var identifier = Guid.NewGuid();
+
+            Document d = client.CreateDocumentAsync(
                 UriFactory.CreateDocumentCollectionUri(dbName, colName),
                 new PetDocument
                 {
@@ -71,17 +81,17 @@ namespace SmartHotel360.PublicWeb.Controllers
                     PetName = petName,
                     MediaUrl = uri.ToString(),
                     Created = DateTime.UtcNow
-                });
+                }).Result;
 
             return identifier;
         }
 
-        private async Task<Uri> UploadPetToStorage(byte[] content)
+        private Uri UploadPetToStorage(byte[] content)
         {
             var storageName = _settingsSvc.GlobalSettings.Pets_Config.BlobName;
             var auth = _settingsSvc.GlobalSettings.Pets_Config.BlobKey;
             var uploader = new PhotoUploader(storageName, auth);
-            var blob = await uploader.UploadPetPhoto(content);
+            var blob = uploader.UploadPetPhoto(content).Result;
             return blob.Uri;
         }
 
