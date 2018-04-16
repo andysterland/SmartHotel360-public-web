@@ -14,6 +14,11 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.2" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="2.0.2" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.3" />
     <PackageReference Include="WindowsAzure.Storage">
       <Version>8.5.0</Version>
     </PackageReference>
@@ -35,6 +40,9 @@
     <None Remove="ClientApp\boot-client.tsx" />
     <None Remove="ClientApp\boot-server.tsx" />
     <None Remove="ClientApp\components\Auth.tsx" />
+    <None Remove="ClientApp\components\BestRoom.tsx" />
+    <None Remove="ClientApp\components\BestRooms.tsx" />
+    <None Remove="ClientApp\components\BestRoomsAll.tsx" />
     <None Remove="ClientApp\components\Checkbox.tsx" />
     <None Remove="ClientApp\components\ConferenceRoomsFeatures.tsx" />
     <None Remove="ClientApp\components\Filter.tsx" />
@@ -66,6 +74,7 @@
     <None Remove="ClientApp\configureStore.ts" />
     <None Remove="ClientApp\routes.tsx" />
     <None Remove="ClientApp\Settings.ts" />
+    <None Remove="ClientApp\store\BestRooms.ts" />
     <None Remove="ClientApp\store\ConferenceRoomsFeatures.ts" />
     <None Remove="ClientApp\store\Home.ts" />
     <None Remove="ClientApp\store\index.ts" />
@@ -97,6 +106,8 @@
     <TypeScriptCompile Include="ClientApp\boot-client.tsx" />
     <TypeScriptCompile Include="ClientApp\boot-server.tsx" />
     <TypeScriptCompile Include="ClientApp\components\Auth.tsx" />
+    <TypeScriptCompile Include="ClientApp\components\BestRooms.tsx" />
+    <TypeScriptCompile Include="ClientApp\components\BestRoomsAll.tsx" />
     <TypeScriptCompile Include="ClientApp\components\Checkbox.tsx" />
     <TypeScriptCompile Include="ClientApp\components\ConferenceRoomsFeatures.tsx" />
     <TypeScriptCompile Include="ClientApp\components\Filter.tsx" />
@@ -128,6 +139,7 @@
     <TypeScriptCompile Include="ClientApp\configureStore.ts" />
     <TypeScriptCompile Include="ClientApp\routes.tsx" />
     <TypeScriptCompile Include="ClientApp\Settings.ts" />
+    <TypeScriptCompile Include="ClientApp\store\BestRooms.ts" />
     <TypeScriptCompile Include="ClientApp\store\ConferenceRoomsFeatures.ts" />
     <TypeScriptCompile Include="ClientApp\store\Home.ts" />
     <TypeScriptCompile Include="ClientApp\store\index.ts" />

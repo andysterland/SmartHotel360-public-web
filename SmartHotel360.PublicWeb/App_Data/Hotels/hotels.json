@@ -1,0 +1,29 @@
+﻿[
+  {
+    "id": 52,
+    "name": "Sh360 Gold Seattle",
+    "city": "Seattle, United States",
+    "rating": 4.5,
+    "price": 180,
+    "numPhotos": 1,
+    "picture": "pichotels/52_1.png"
+  },
+  {
+    "id": 51,
+    "name": "Sh360 Platinum Seattle",
+    "city": "Seattle, United States",
+    "rating": 4.8,
+    "price": 180,
+    "numPhotos": 1,
+    "picture": "pichotels/51_1.png"
+  },
+  {
+    "id": 53,
+    "name": "Sh360 Spa Seattle",
+    "city": "Seattle, United States",
+    "rating": 4.7,
+    "price": 180,
+    "numPhotos": 1,
+    "picture": "pichotels/53_1.png"
+  }
+]

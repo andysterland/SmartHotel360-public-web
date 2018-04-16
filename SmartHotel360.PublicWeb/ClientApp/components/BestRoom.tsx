@@ -1,9 +1,9 @@
 ﻿import * as React from 'react';
-import * as RoomsStore from '../store/Rooms';
+import * as RoomsStore from '../store/BestRooms';
 import { settings } from '../Settings';
 
-export default class Room extends React.Component<RoomsStore.Room, {}> {
-    private setBackgroundImage(image: string): { [key: string]: string } {        
+export default class Room extends React.Component<RoomsStore.BestRoom, {}> {
+    private setBackgroundImage(image: string): { [key: string]: string } {
         return {
             backgroundImage: `url(${settings.urls.images_Base}${image}), url('assets/images/placeholder.png')`
         };
