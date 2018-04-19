@@ -26,7 +26,8 @@ namespace SmartHotel360.PublicWeb
 
             services.Configure<LocalSettings>(Configuration);
             services.AddSingleton<SettingsService>( (sp) => SettingsService.Load(sp.GetService<IOptions<LocalSettings>>().Value));
-
+            services.AddSingleton<HotelsService>();
+            
             // Our custom services
             if (!string.IsNullOrEmpty(Configuration["USE_NULL_TESTIMONIALS_SERVICE"]))
             {
