@@ -30,7 +30,7 @@ namespace SmartHotel360.PublicWeb.Services
 
         public List<Hotel> Load()
         {
-            string fileName = "C:\\SmartHotel360-public-web\\SmartHotel360.PublicWeb\\App_Data\\Hotels\\hotels.json";
+            string fileName = "C:\\SmartHotel360\\SmartHotel360.PublicWeb\\App_Data\\Hotels\\hotels.json";
             //string fileName = HttpContext.Current.Server.MapPath("~/App-Data/Hotels/hotels.json");
             string json = System.IO.File.ReadAllText(fileName);
 

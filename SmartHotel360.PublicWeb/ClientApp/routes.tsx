@@ -13,7 +13,7 @@ export const routes = <Layout>
     <Route exact path='/' component={Home} />
     <Route exact path='/home2' component={Home} />
     <Route exact path='/SearchRooms' component={SearchRooms} />
-    <Route exact path='/BestRooms' component={BestRooms} />
+    <Route exact path='/BestHotels' component={BestRooms} />
     <Route exact path='/Pets' component={Pets} />
     <Route path='/RoomDetail/:hotelId' component={RoomDetail} />
 </Layout>;

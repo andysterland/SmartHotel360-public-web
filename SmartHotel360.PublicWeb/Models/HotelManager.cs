@@ -14,10 +14,18 @@ namespace SmartHotel360.PublicWeb.Controllers
 
         public List<Hotel> GetBestHotels()
         {
-            var bestHotels = AllHotels.Where(h =>
+            List<Hotel> bestHotels = new List<Hotel>();
+
+            for(int i = 0; i < AllHotels.Count; i ++)
             {
-                return h.rating == 4 || h.rating == 5;
-            }).OrderBy(d => d.rating).ToList();
+               
+                if (AllHotels[i].rating == 4 || AllHotels[i].rating == 5)
+                {
+                    bestHotels.Add(AllHotels[i]);
+                }
+            }
+
+            bestHotels.OrderBy(d => d.rating);
             return bestHotels;
         }
 
